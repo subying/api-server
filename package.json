@@ -10,7 +10,8 @@
     "koa": "next",
     "koa-router": "next",
     "koa-send": "^3.2.0",
-    "log4js": "^1.0.1"
+    "log4js": "^1.0.1",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
