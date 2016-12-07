@@ -1,0 +1,26 @@
+{
+  "name": "api-lite",
+  "version": "1.0.0",
+  "description": "api lite ",
+  "main": "app.js",
+  "dependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.11.1",
+    "js-yaml": "^3.7.0",
+    "koa": "next",
+    "koa-router": "next",
+    "koa-send": "^3.2.0",
+    "log4js": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.11.1",
+    "eslint-plugin-react": "^6.8.0"
+  },
+  "scripts": {
+    "start": "supervisor --harmony app.js"
+  },
+  "repository": {},
+  "author": "subying",
+  "license": "MIT"
+}

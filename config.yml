@@ -1,0 +1,6 @@
+db:
+    file: 'm.db' #数据库文件名称
+path:
+    controller: 'controller'
+server:
+    port: 3000 #服务器端口
