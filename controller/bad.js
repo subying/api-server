@@ -1,5 +1,6 @@
 /*
  *@fileOverview 404 页面
+ *@auth subying
 */
 
 module.exports = async function(ctx){

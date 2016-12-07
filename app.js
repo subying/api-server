@@ -11,6 +11,7 @@ const send        = require('koa-send');
 const dbInit      = require('./db/init');
 const setting     = require('./libs/setting');
 const routers     = require('./libs/routers');
+const middleware  = require('./libs/middleware');
 
 
 /*配置  全局通用  只需要设置一次*/
@@ -44,6 +45,11 @@ app
         }
     }
 
+})
+.use(async (ctx,next)=>{
+    middleware(ctx);
+
+    await next();//往下执行
 })
 .use(routers.init())//初始化路由
 .listen(setting.server.port,()=>{

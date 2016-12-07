@@ -1,5 +1,6 @@
 /*
  *@fileOverview 文章操作
+ *@auth subying
 */
 
 const dbCtrl = require('./ctrl');//数据库操作
@@ -19,12 +20,22 @@ var dbPad = {
      *@param {Number} id 文章id
     */
     getData:async function(id){
-        var db = new dbCtrl();
-        var sql = 'select * from article';
+        if(!id) return false;
 
-        if(id){
-            sql += ' where article_id='+id;
-        }
+        var db = new dbCtrl();
+        var sql = 'select * from article where article_id='+id;
+
+        var rows = await db.get(sql);
+        db.close();
+
+        return rows;
+    },
+    /*
+     *@description 获取列表
+    */
+    getList:async function(){
+        var db = new dbCtrl();
+        var sql = 'select article_id,article_title,update_time from article';
 
         var rows = await db.all(sql);
         db.close();

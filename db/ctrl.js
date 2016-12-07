@@ -1,5 +1,6 @@
 /*
  *@fileOverview 数据库读取
+ *@auth subying
 */
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
@@ -43,6 +44,19 @@ class dbCtrl{
         var db = this.db;
         return new Promise(function(resolve, reject){
             db.all(sql,(err,rows)=>{
+                if(!err){
+                    resolve(rows);
+                }else{
+                    reject(err);
+                }
+            });
+        });
+    }
+
+    get(sql){
+        var db = this.db;
+        return new Promise(function(resolve, reject){
+            db.get(sql,(err,rows)=>{
                 if(!err){
                     resolve(rows);
                 }else{

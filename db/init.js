@@ -1,5 +1,6 @@
 /*
  *@fileOverview 初始化数据
+ *@auth subying
 */
 const fs = require('fs');
 const path = require('path');

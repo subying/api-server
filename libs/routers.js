@@ -1,5 +1,6 @@
 /*
  *@fileOverview 路由定义
+ *@auth subying
 */
 const path        = require('path');
 const fs          = require('fs');
@@ -21,6 +22,23 @@ const routersPad = {
             await this.bindController('index',ctx,next);
         });
 
+        //显示
+        router.get('/show/:id',async (ctx,next)=>{
+            //
+            await this.bindController('show',ctx,next);
+        });
+
+        //编辑
+        router.get('/edit/:id',async (ctx,next)=>{
+            //
+            await this.bindController('edit',ctx,next);
+        });
+
+        //保存
+        router.post('/edit',async (ctx,next)=>{
+            //
+            await this.bindController('edit',ctx,next);
+        });
 
         //404页面
         router.get('/404',async (ctx,next)=>{
