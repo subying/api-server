@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://pandao.github.io/editor.md/css/editormd.css" />
     </head>
     <body>
-        标题：<input type="text" value="<%=article_title%>" />
+        标题：<input type="text" id="title" value="<%=article_title%>" />
         <button type="button" name="button" id="save" data-aid="<%=article_id%>">保存</button>
         <div id="test-editormd"></div>
         <textarea id="defCon" style="display:none;"><%=article_content%></textarea>
@@ -56,12 +56,17 @@
             });
 
             $('#save').on('click',function(){
-                console.log(testEditor.getMarkdown());
                 $.post('/edit',{
                     id:'<%=article_id%>',
-                    con:testEditor.getMarkdown(),
+                    title:$('#title').val(),
+                    content:testEditor.getMarkdown(),
                 },function(res){
-                    console.log(res);
+                    if(!Number(res.code)){
+                        alert('ok');
+                    }else{
+                        console.log(res.message);
+                    }
+
                 })
             });
         </script>

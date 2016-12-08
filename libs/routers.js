@@ -34,6 +34,12 @@ const routersPad = {
             await this.bindController('edit',ctx,next);
         });
 
+        //新增
+        router.get('/edit',async (ctx,next)=>{
+            //
+            await this.bindController('edit',ctx,next);
+        });
+
         //保存
         router.post('/edit',async (ctx,next)=>{
             //
@@ -48,8 +54,6 @@ const routersPad = {
 
         //没有设置控制器的页面
         router.get('*',async (ctx,next)=>{
-            //
-            console.log('*****');
             await this.bindController('bad',ctx,next);
         });
 

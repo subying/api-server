@@ -7,6 +7,7 @@ const app         = new Koa();
 const log4js      = require('log4js');
 const logger      = log4js.getLogger('app');
 const send        = require('koa-send');
+const koaBody     = require('koa-body');
 
 const dbInit      = require('./db/init');
 const setting     = require('./libs/setting');
@@ -24,6 +25,7 @@ log4js.configure({
 
 
 app
+.use(koaBody({multipart: true}))//格式化请求  针对于post
 .use(async (ctx,next)=>{
     // 初始化数据
     await dbInit.init();
