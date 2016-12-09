@@ -1,0 +1,40 @@
+env:
+    browser: true #浏览器环境
+    es6: true #使用es6
+    node: true #node环境
+extends: 'eslint:recommended'
+parser: 'babel-eslint' #格式化工具
+parserOptions:
+    ecmaFeatures:
+        experimentalObjectRestSpread: true
+        jsx: true
+    sourceType: module
+    allowImportExportEverywhere: false
+plugins: #插件
+  - react
+rules: #规则
+    #"off" 或 0 - 关闭规则
+    #"warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
+    #"error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
+    ###
+    indent: #缩进
+        - error
+        - 4 #4个空格 数字表示空格数量，或者使用Tabs
+    linebreak-style:
+        - error
+        - windows
+    quotes: #引号
+        - error
+        - single #单引号
+        - {allowTemplateLiterals: true}
+    semi:
+        - error
+        - always
+    no-console: 0 #不允许使用console  0表示关闭这个检测
+    no-unused-vars: 1 #不允许定义变量却未使用
+    react/jsx-no-undef: 1
+    react/jsx-uses-react: 1
+    react/jsx-uses-vars: 2 #react 中使用变量
+globals: #全局变量
+    React: true
+    ReactDOM: true
