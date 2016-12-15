@@ -1,9 +1,10 @@
 /**
  * @description 弹窗
  */
-var IndexLess = require('./index.less');
-
 class Layer extends  React.Component{
+    /**
+     * @param {Object} props Foo
+     */
     constructor(props) {
         super(props);
 
@@ -13,37 +14,51 @@ class Layer extends  React.Component{
         };
     }
 
+    /**
+     * @description hide
+     * @returns {void}
+     */
     hide(){
-        var isPageHide = this.props.isPageHide;
-        if(!isPageHide){
+        const isPageHide = this.props.isPageHide;
+        if (!isPageHide){
             this.setState({
                 show: false
             });
         }
     }
 
+    /**
+     * @description hide
+     * @returns {void}
+     */
     componentDidMount(){
         this.setState({
             show: !!this.props.show
         });
     }
 
+    /**
+     * @description hide
+     * @param {Object} nextProps 准备更新的属性
+     * @returns {void}
+     */
     componentWillReceiveProps(nextProps){
         this.setState({
             show: !!nextProps.show
         });
     }
 
-
-
+    /**@description render
+     *@return {Element} render
+    */
     render(){
-        var _class = '';
+        let _class = '';
 
-        if(this.state.show){
+        if (this.state.show){
             _class = 'layermshow rlayerbox-show';
         }
 
-        return(
+        return (
             <div className={'rlayerbox layermbox ' + _class}>
                 <div className="laymshade" onClick={this.hide.bind(this)}></div>
                 <div className="layermmain">

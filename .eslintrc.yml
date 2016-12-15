@@ -42,9 +42,12 @@ rules: #规则
         - error
         - always
     no-console: 0 #不允许使用console  0表示关闭这个检测
+    comma-dangle: 0 # var foo={a:1,} 要求或禁止末尾逗号   这里关闭验证
+    no-underscore-dangle: 0 #禁止标识符中有悬空下划线(不允许下划线开头的变量命名)  这里关闭验证
     no-param-reassign: [2, { props: false }]
+    class-methods-use-this: 0 #class 里面的方法  一定要用到this
     eol-last: 0 #最后一行需要回车（换行，多一行）
-    arrow-body-style: 0
+    arrow-body-style: 0 #要求箭头函数体使用大括号
     spaced-comment: 0 #注释需要 空格 /* sdfsd */
     no-multi-spaces: 0 #不允许多个空格  var a = 'b'; 错误: var a =  'b';
     space-before-blocks: 0 #快作用域 之前空格 if(1) {}  错误 if(1){}
@@ -57,25 +60,24 @@ rules: #规则
     react/jsx-uses-vars: 2 #react 中使用变量
     react/prefer-es6-class: 1
 
-    require-jsdoc: 2
-    valid-jsdoc:
+    require-jsdoc: #要求使用jsdoc注释
         - 2
-        - prefer:
-            arg: "param"
-            argument: "param"
-            class: "constructor"
-            return: "returns"
-            virtual: "abstract"
+        - require:
+            FunctionDeclaration: true
+            MethodDefinition: true
+            ClassDeclaration: true
+    valid-jsdoc: #jsdoc 规则
+        - 2
     jsdoc/check-param-names: 1
     jsdoc/check-tag-names: 1
     jsdoc/check-types: 1
     jsdoc/newline-after-description: 1
-    jsdoc/require-description-complete-sentence: 1
-    jsdoc/require-hyphen-before-param-description: 1
+    jsdoc/require-description-complete-sentence: 0 #在描述后要用'.'(英文句号)结束 这里取消
+    jsdoc/require-hyphen-before-param-description: 0 #在参数描述前使用连字符-  这里取消
     jsdoc/require-param: 1
     jsdoc/require-param-description: 2
     jsdoc/require-param-type: 1
-    jsdoc/require-returns-description: 1
+    jsdoc/require-returns-description: 0  #注释中要填写@returns 描述 这里取消
     jsdoc/require-returns-type: 1
 globals: #全局变量
     React: true
