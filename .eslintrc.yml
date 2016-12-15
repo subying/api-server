@@ -2,21 +2,32 @@ env:
     browser: true #浏览器环境
     es6: true #使用es6
     node: true #node环境
-extends: 'eslint:recommended'
-parser: 'babel-eslint' #格式化工具
+# extends: 'eslint:recommended'
+extends: 'airbnb/base'
+#parser: 'babel-eslint' #格式化工具
 parserOptions:
     ecmaFeatures:
         experimentalObjectRestSpread: true
         jsx: true
     sourceType: module
     allowImportExportEverywhere: false
+# settings:
+#     jsdoc:
+#         tagNamePreference:
+#             param: 'arg'
+#             returns: 'return'
 plugins: #插件
   - react
+  - jsdoc
+  - require-jsdoc
 rules: #规则
     #"off" 或 0 - 关闭规则
     #"warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
     #"error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
     ###
+    strict:
+        - 2
+        - global
     indent: #缩进
         - error
         - 4 #4个空格 数字表示空格数量，或者使用Tabs
@@ -31,10 +42,43 @@ rules: #规则
         - error
         - always
     no-console: 0 #不允许使用console  0表示关闭这个检测
+    no-param-reassign: [2, { props: false }]
+    eol-last: 0 #最后一行需要回车（换行，多一行）
+    arrow-body-style: 0
+    spaced-comment: 0 #注释需要 空格 /* sdfsd */
+    no-multi-spaces: 0 #不允许多个空格  var a = 'b'; 错误: var a =  'b';
+    space-before-blocks: 0 #快作用域 之前空格 if(1) {}  错误 if(1){}
+    no-script-url: 0 # 不允许url使用 script 脚本
+    space-infix-ops: 0 #判断之间必须空格  a > b  错误 a>b or  a >b
+    prefer-template: 0 #强制使用es6模板  `a ${b}` 错误 'a'+b
+    no-useless-constructor: 0 #class 里使用 constructor必须先定义
+    max-len: 0 #检测每行最大长度  默认80  这里取消是因为jsx里面一行通常很长
     no-unused-vars: 1 #不允许定义变量却未使用
-    react/jsx-no-undef: 1
-    react/jsx-uses-react: 1
     react/jsx-uses-vars: 2 #react 中使用变量
+    react/prefer-es6-class: 1
+
+    require-jsdoc: 2
+    valid-jsdoc:
+        - 2
+        - prefer:
+            arg: "param"
+            argument: "param"
+            class: "constructor"
+            return: "returns"
+            virtual: "abstract"
+    jsdoc/check-param-names: 1
+    jsdoc/check-tag-names: 1
+    jsdoc/check-types: 1
+    jsdoc/newline-after-description: 1
+    jsdoc/require-description-complete-sentence: 1
+    jsdoc/require-hyphen-before-param-description: 1
+    jsdoc/require-param: 1
+    jsdoc/require-param-description: 2
+    jsdoc/require-param-type: 1
+    jsdoc/require-returns-description: 1
+    jsdoc/require-returns-type: 1
 globals: #全局变量
     React: true
     ReactDOM: true
+    jQuery: true
+    $: true
