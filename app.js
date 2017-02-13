@@ -8,6 +8,7 @@ const log4js      = require('log4js');
 const logger      = log4js.getLogger('app');
 const send        = require('koa-send');
 const koaBody     = require('koa-body');
+const path        = require('path');
 
 const dbInit      = require('./db/init');
 const setting     = require('./libs/setting');
@@ -26,34 +27,35 @@ log4js.configure({
 
 app
 .use(koaBody({multipart: true}))//格式化请求  针对于post
-.use(async (ctx,next)=>{
+.use(async (ctx,next) => {
     // 初始化数据
     await dbInit.init();
     await next();
 })
-.use(async (ctx,next)=>{
+.use(async (ctx,next) => {
     //判断是否首页
-    if ('/' == ctx.path){
+    if (ctx.path === '/'){
         await next();
+        return true;
     }else{
         //允许隐藏文件
-        var res = await send(ctx,ctx.path,{root: __dirname + '/statics',hidden: true});
+        const res = await send(ctx,ctx.path,{root: path.join(__dirname,'/statics'),hidden: true});
 
         //判断是否有返回结果  有返回结果则表示找到该静态文件  如果没有则往下执行
         if(res){
-            return ;
+            return false;
         }else{
             await next();
+            return true;
         }
     }
-
 })
-.use(async (ctx,next)=>{
+.use(async (ctx,next) => {
     middleware(ctx);
 
     await next();//往下执行
 })
 .use(routers.init())//初始化路由
-.listen(setting.server.port,()=>{
+.listen(setting.server.port,() => {
     logger.info('server listen on '+setting.server.port);
 });

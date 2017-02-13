@@ -9,15 +9,15 @@ const _dbFile = path.join(__dirname,setting.db.file);
 
 class dbCtrl{
     constructor(){
-        var _file = _dbFile;
+        const _file = _dbFile;
         this.file = _file;
         this.db = new sqlite3.Database(_file);
     }
 
     run(sql,param){
-        var db = this.db;
-        return new Promise((resolve,reject)=>{
-            db.run(sql,param || {},(err,rows)=>{
+        const db = this.db;
+        return new Promise((resolve,reject) => {
+            db.run(sql,param || {},(err,rows) => {
                 if(!err){
                     resolve(rows);
                 }else{
@@ -28,9 +28,9 @@ class dbCtrl{
     }
 
     exec(sql){
-        var db = this.db;
+        const db = this.db;
         return new Promise(function(resolve, reject){
-            db.run(sql,(err,rows)=>{
+            db.run(sql,(err,rows) => {
                 if(!err){
                     resolve(rows);
                 }else{
@@ -41,9 +41,9 @@ class dbCtrl{
     }
 
     all(sql){
-        var db = this.db;
+        const db = this.db;
         return new Promise(function(resolve, reject){
-            db.all(sql,(err,rows)=>{
+            db.all(sql,(err,rows) => {
                 if(!err){
                     resolve(rows);
                 }else{
@@ -54,9 +54,9 @@ class dbCtrl{
     }
 
     get(sql){
-        var db = this.db;
+        const db = this.db;
         return new Promise(function(resolve, reject){
-            db.get(sql,(err,rows)=>{
+            db.get(sql,(err,rows) => {
                 if(!err){
                     resolve(rows);
                 }else{
